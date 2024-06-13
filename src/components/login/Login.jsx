@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import BASEURL from "../../axios";
+import API from "../../axios";
 import { useNavigate } from "react-router";
 import { Card, Form, Input, Button, Space, Select, Typography } from "antd";
 
+const { Title, Text, Link } = Typography;
 const Login = () => {
-  const { Title, Text, Link } = Typography;
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const url = "/login";
       setLoading(true);
-      const getToken = await BASEURL.post(url, credentials);
+      const getToken = await API.post(url, credentials);
       localStorage.setItem("token", getToken.data.data.access_token);
       setLoading(false);
       setLoggedIn(true);
