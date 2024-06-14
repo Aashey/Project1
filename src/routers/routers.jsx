@@ -8,7 +8,7 @@ import Login from "../components/login/Login";
 import Dashboard from "../components/dashboard/dashboard";
 import Brandprofile from "../components/brandprofile/brandprofile";
 
-const router = createBrowserRouter([
+const routers = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
@@ -27,4 +27,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+export default routers;

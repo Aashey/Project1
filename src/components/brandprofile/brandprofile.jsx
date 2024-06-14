@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Table, Input, Button, Typography } from "antd";
-import BASEURL from "../../axios";
+import BASEURL from "../../helpers/axios";
 import { useNavigate } from "react-router";
+import Header from "../global/header";
 
 const Brandprofile = () => {
   const { Title, Link, Text } = Typography;
@@ -36,9 +37,12 @@ const Brandprofile = () => {
     getBrandProfile();
   });
   return (
-    <div>
-      <Table dataSource={brandprofile} columns={brandProfileColumn} />
-    </div>
+    <>
+      <Header />
+      <div>
+        {/* <Table dataSource={brandprofile} columns={brandProfileColumn} /> */}
+      </div>
+    </>
   );
 };
 

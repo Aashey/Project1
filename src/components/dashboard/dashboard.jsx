@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Header from "../global/header";
 import { useNavigate } from "react-router";
 
 const Dashboard = () => {
@@ -11,7 +12,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>Dashboard</div>
+      <Header />
     </>
   );
 };

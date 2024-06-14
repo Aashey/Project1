@@ -1,42 +1,28 @@
+import { Button, Card, Form, Input, Typography, message } from "antd";
 import React, { useEffect, useState } from "react";
-import API from "../../axios";
 import { useNavigate } from "react-router";
-import { Card, Form, Input, Button, Space, Select, Typography } from "antd";
+import useLogin from "../../hooks/useLogin";
 
 const { Title, Text, Link } = Typography;
+
 const Login = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  const [loading, setLoading] = useState(false);
-  const [credentials, setCredentials] = useState({});
-  const [error, setError] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loading, error, success, login } = useLogin();
+  const loggedIn = localStorage.getItem("isLoggedIn");
+  const [token, setToken] = useState();
 
-  const getLoginToken = async () => {
-    try {
-      const url = "/login";
-      setLoading(true);
-      const getToken = await API.post(url, credentials);
-      localStorage.setItem("token", getToken.data.data.access_token);
-      setLoading(false);
-      setLoggedIn(true);
-      localStorage.setItem("isLoggedIn", true);
-    } catch (error) {
-      console.log(error);
-      setError(error);
-      setLoading(false);
-    }
+  const handleFormSubmit = (credentials) => {
+    const url = "/login";
+    login(url, credentials);
   };
 
-  const handleFormSubmit = (values) => {
-    setCredentials(values);
-  };
-
-  useEffect(() => {
-    if (Object.keys(credentials).length > 0) {
-      getLoginToken();
-    }
-  }, [credentials]);
+  // useEffect(() => {
+  //   if (success) {
+  //     message.success(success.message);
+  //   } else {
+  //     message.error(error.message);
+  //   }
+  // }, [success, error]);
 
   useEffect(() => {
     loggedIn && navigate("/dashboard");
@@ -44,7 +30,6 @@ const Login = () => {
 
   return (
     <div>
-      {error ? <p>Error Logging In.</p> : ""}
       <Card
         title={
           <Title type="warning" level={2}>
@@ -66,7 +51,7 @@ const Login = () => {
           >
             <Input.Password addonBefore="Password" />
           </Form.Item>
-          <Button type="primary" block htmlType="Submit" value="Submit">
+          <Button type="primary" block htmlType="Submit">
             Submit
           </Button>
         </Form>

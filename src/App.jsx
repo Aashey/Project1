@@ -7,7 +7,7 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import router from "./router/routes.jsx";
+import routers from "./routers/routers.jsx";
 import "./App.css";
 import Login from "./components/login/Login.jsx";
 import Dashboard from "./components/dashboard/dashboard.jsx";
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={routers} />
     </>
   );
 }
