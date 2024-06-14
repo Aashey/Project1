@@ -10,7 +10,7 @@ import {
 import routers from "./routers/routers.jsx";
 import "./App.css";
 import Login from "./components/login/Login.jsx";
-import Dashboard from "./components/dashboard/dashboard.jsx";
+import Dashboard from "./components/dashboard";
 
 function App() {
   const token = localStorage.getItem("token");
